@@ -16,7 +16,7 @@ function Footer() {
 
             <Helmet>
                
-            <script src="admin/assets/js/jquery-1.10.2.js"></script>
+           
    
             <script src="admin/assets/js/bootstrap.js"></script>
             
@@ -24,6 +24,7 @@ function Footer() {
             <script src="admin/assets/js/dataTables/dataTables.bootstrap.js"></script>
             
             <script src="admin/assets/js/custom.js"></script>
+            <script src="admin/assets/js/jquery-1.10.2.js"></script>
             </Helmet>
         </div>
     )

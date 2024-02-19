@@ -1,4 +1,6 @@
+import React,{ Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 
 import Home from "./website/pages/Home";
 import About from "./website/pages/About";
@@ -13,7 +15,10 @@ import Login from "./website/pages/Login";
 
 
 
-import Dashboard from "./admin/pages/Dashboard";
+
+
+
+//import Dashboard from "./admin/pages/Dashboard";
 import AHeader from "./admin/component/Header";
 import AFooter from "./admin/component/Footer";
 import Admin_login from "./admin/pages/Admin_login";
@@ -26,7 +31,7 @@ import Add_emp from "./admin/pages/Add_emp";
 import Manage_emp from "./admin/pages/Manage_emp";
 import Manage_contact from "./admin/pages/Manage_contact";
 import Manage_feedback from "./admin/pages/Manage_feedback";
-
+const Dashboard = React.lazy(() => import('./admin/pages/Dashboard'));
 
 function App() {
   return (
@@ -48,7 +53,9 @@ function App() {
         }
 
         <Route path="/admin-login" element={<Admin_login/>}></Route>
-        <Route path="/admin-dashborad" element={<> <AHeader/> <Dashboard/> <AFooter/></>}></Route>  
+        <Route path="/admin-dashborad" element={<> 
+          <Suspense fallback = { <div class="spinner-border text-danger"></div> }> <AHeader/><Dashboard/><AFooter/></Suspense> </>}>
+        </Route>  
         <Route path="/add-categories" element={<> <AHeader/> <Add_categories/> <AFooter/></>}></Route>
         <Route path="/manage-categories" element={<> <AHeader/> <Manage_categories/> <AFooter/></>}></Route>
         <Route path="/add-services" element={<> <AHeader/> <Add_services/> <AFooter/></>}></Route>

@@ -61,7 +61,7 @@ function Manage_services() {
                               <td>{value.name}</td>
                               <td>{value.desc}</td>
                               <td>{value.price}</td>
-                              <td>{value.img}</td>
+                              <td><img src={value.img} alt="" width="50px" /></td>
                               <td>{value.status}</td>
                               <td className="center">
                                 <button className='btn btn-danger' onClick={()=>deleteHandel(value.id)}>Delete</button>
