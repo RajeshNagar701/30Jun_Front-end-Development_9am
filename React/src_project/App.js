@@ -1,6 +1,7 @@
 import React,{ Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from "./website/pages/Home";
 import About from "./website/pages/About";
@@ -33,9 +34,14 @@ import Manage_contact from "./admin/pages/Manage_contact";
 import Manage_feedback from "./admin/pages/Manage_feedback";
 const Dashboard = React.lazy(() => import('./admin/pages/Dashboard'));
 
+
+
+
+
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer></ToastContainer>
       <Routes>
         <Route path="/" element={<><Home/></>}></Route>
         <Route path="/signup" element={<><Signup/></>}></Route>

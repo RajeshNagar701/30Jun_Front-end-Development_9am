@@ -28,7 +28,7 @@ function Navbar() {
                     </div>
                     <NavLink to="/contact" className="nav-item nav-link">Contact</NavLink>
                 </div>
-                <Link to="/signup" className="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Get Started</Link>
+                <Link to="/login" className="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Login</Link>
             </div>
         </nav>
 

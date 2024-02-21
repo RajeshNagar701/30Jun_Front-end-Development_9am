@@ -63,7 +63,7 @@ function Manage_user() {
                               <td>{value.email}</td>
                               <td>{value.password}</td>
                               <td>{value.mobile}</td>
-                              <td>{value.img}</td>
+                              <td><img src={value.img} alt="" width="50px"/></td>
                               <td>{value.status}</td>
                               <td className="center">
                                 <button className='btn btn-danger' onClick={()=>deleteHandel(value.id)}>Delete</button>

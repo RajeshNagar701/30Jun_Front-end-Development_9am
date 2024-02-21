@@ -2,36 +2,59 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import Header2 from '../component/Header2'
 import Footer from '../component/Footer'
+import { toast } from 'react-toastify';
 
 function Contact() {
 
-  const [formvalue,setFormvalue]=useState({
-    id:"",
-    name:"",
-    email:"",
-    comment:""
+  const [formvalue, setFormvalue] = useState({
+    id: "",
+    name: "",
+    email: "",
+    comment: ""
   });
 
-  const getform=(e)=>{
-    setFormvalue({...formvalue,id:new Date().getTime().toString(),[e.target.name]:e.target.value});
+  const getform = (e) => {
+    setFormvalue({ ...formvalue, id: new Date().getTime().toString(), [e.target.name]: e.target.value });
     console.log(formvalue);
   }
 
-  const submithandel = async (e) => {
-    e.preventDefault(); // stop page reload 
-    const res = await axios.post(`http://localhost:3000/contact`,formvalue);
-    //console.log(res);
-    if(res.status==201)
-    {
-      setFormvalue({...formvalue,name:"",email:"",comment:""});
-      alert('Contact submited success');
+  const validation = () => {
+
+    var result = true;
+    if (formvalue.name == "") {
+      toast.error('Name Field is required');
+      result = false;
       return false;
+    }
+    if (formvalue.email == "") {
+      toast.error('Email Field is required');
+      result = false;
+      return false;
+    }
+    if (formvalue.comment == "") {
+      toast.error('comment Field is required');
+      result = false;
+      return false;
+    }
+    return result;
+  }
+
+  const submithandel = async (e) => {
+    e.preventDefault(); // stop page reload
+    if (validation()) {
+      const res = await axios.post(`http://localhost:3000/contact`, formvalue);
+      //console.log(res);
+      if (res.status == 201) {
+        setFormvalue({ ...formvalue, name: "", email: "", comment: "" });
+        toast.success('Contact submited success');
+        return false;
+      }
     }
   }
 
   return (
     <div className="container-xxl bg-white p-0">
-      <Header2 title={"Contact"}/>
+      <Header2 title={"Contact"} />
       {/* Contact Start */}
       <div className="container-xxl py-5">
         <div className="container py-5 px-lg-5">
@@ -57,7 +80,7 @@ function Contact() {
                         <label htmlFor="email">Your Email</label>
                       </div>
                     </div>
-                  
+
                     <div className="col-12">
                       <div className="form-floating">
                         <textarea className="form-control" name='comment' value={formvalue.comment} onChange={getform} placeholder="Leave a message here" id="message" style={{ height: 150 }} defaultValue={""} />
@@ -75,7 +98,7 @@ function Contact() {
         </div>
       </div>
       {/* Contact End */}
-      <Footer/>
+      <Footer />
     </div>
 
   )
