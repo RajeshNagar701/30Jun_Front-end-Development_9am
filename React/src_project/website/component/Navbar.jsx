@@ -1,8 +1,20 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 
 function Navbar() {
+
+    const redirect = useNavigate();
+
+    // Delete session
+    const logout = () => {
+        localStorage.removeItem('userid');
+        localStorage.removeItem('uname');
+        toast.success('Logout Success');
+        redirect('/')
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
             <Link to="/" className="navbar-brand p-0">
@@ -27,8 +39,38 @@ function Navbar() {
                         </div>
                     </div>
                     <NavLink to="/contact" className="nav-item nav-link">Contact</NavLink>
+
+                    
+                    {(
+                        () => {
+                            //  Use  session
+                            if (localStorage.getItem('userid')) {
+                                return (
+                                        <NavLink to="/profile" className="nav-item nav-link">Hi .. {localStorage.getItem('uname')}</NavLink>
+                                )
+                            }
+                        }
+                    )()}
                 </div>
-                <Link to="/login" className="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Login</Link>
+                {(
+                    () => {
+                        if (localStorage.getItem('userid')) {
+                            return (
+                                <>
+                                    <a href="javascript:void(0)" onClick={logout} className="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Logout</a>
+                                </>
+                            )
+                        }
+                        else {
+                            return (
+                                <>
+                                    <Link to="/login" className="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Login</Link>
+                                </>
+                            )
+                        }
+                    }
+                )()}
+
             </div>
         </nav>
 

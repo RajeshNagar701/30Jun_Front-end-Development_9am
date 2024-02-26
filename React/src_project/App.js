@@ -32,6 +32,7 @@ import Add_emp from "./admin/pages/Add_emp";
 import Manage_emp from "./admin/pages/Manage_emp";
 import Manage_contact from "./admin/pages/Manage_contact";
 import Manage_feedback from "./admin/pages/Manage_feedback";
+import Profile from "./website/pages/Profile";
 const Dashboard = React.lazy(() => import('./admin/pages/Dashboard'));
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/" element={<><Home/></>}></Route>
         <Route path="/signup" element={<><Signup/></>}></Route>
         <Route path="/login" element={<><Login/></>}></Route>
+        <Route path="/profile" element={<><Profile/></>}></Route>
         <Route path="/about" element={<><About/></>}></Route>
         <Route path="/contact" element={<><Contact/></>}></Route>
         <Route path="/service" element={<><Service/></>}></Route>

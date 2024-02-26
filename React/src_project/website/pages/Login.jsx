@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Header2 from '../component/Header2'
 import Footer from '../component/Footer'
 import { Link, useNavigate } from 'react-router-dom'
@@ -10,6 +10,12 @@ function Login() {
   
   const redirect=useNavigate(); // redirect any routes
 
+  useEffect(()=>{
+    if(localStorage.getItem('userid'))
+    {
+        redirect('/');
+    }
+  },[]);
 
 
   const [formvalue, setFormvalue] = useState({
@@ -45,8 +51,13 @@ function Login() {
     if (validation()) {
       const res = await axios.get(`http://localhost:3000/user?email=${formvalue.email}`);
       console.log(res);
-      if (res.data.length > 0) {
+      if (res.data.length > 0) {       
         if (res.data[0].password == formvalue.password) {
+
+          // create session
+          localStorage.setItem('userid',res.data[0].id);
+          localStorage.setItem('uname',res.data[0].name);
+
           toast.success('Login Success');
           redirect('/');
         }

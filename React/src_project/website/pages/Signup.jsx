@@ -4,10 +4,18 @@ import axios from 'axios';
 import Header2 from '../component/Header2'
 import Footer from '../component/Footer'
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function Signup() {
 
+
+  const redirect=useNavigate();
+  useEffect(()=>{
+    if(localStorage.getItem('userid'))
+    {
+        redirect('/');
+    }
+  },[]);
   
   const [formvalue,setFormvalue]=useState({
     id:"",
