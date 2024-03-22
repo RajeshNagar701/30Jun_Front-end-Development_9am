@@ -6,6 +6,7 @@ import Footer from '../Component/Footer';
 import Header from '../Component/Header';
 import { useSelector,useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { insert } from '../Userslice';
 
 
 
@@ -60,7 +61,9 @@ function Add_user() {
     const submitHandel = async (e) => {
         e.preventDefault();
         if (vadidation()) {
-          
+          dispatch(insert(formvalue));
+          toast.success('Data Inserted success');
+          setFormvalue({ ...formvalue,name:"",email:"",password:"",mobile:"",img:""});
         }
 
     }
@@ -78,7 +81,7 @@ function Add_user() {
                     <form action="" method='post' onSubmit={submitHandel} >
                         <div className="mb-3 mt-3">
                             <label htmlFor="email" className="form-label">Name:</label>
-                            <input type="text" value={formvalue.name} onChange={changeHandel} className="form-control"  placeholder="Enter email" name="name" />
+                            <input type="text" value={formvalue.name} onChange={changeHandel} className="form-control"  placeholder="Enter Name" name="name" />
                         </div>
                         <div className="mb-3 mt-3">
                             <label htmlFor="email" className="form-label">Email:</label>

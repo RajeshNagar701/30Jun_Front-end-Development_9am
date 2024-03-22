@@ -3,9 +3,11 @@ import Userslice from "../features/Userslice";
 import Adminslice from "../features/Adminslice";
 
 
-export default configureStore({
-    reducer:{
-      user:Userslice,
-      admin:Adminslice  
-    },   
-})
+export const store = configureStore({
+  reducer: {
+    user:Userslice,
+    admin:Adminslice  
+  },
+});
+
+

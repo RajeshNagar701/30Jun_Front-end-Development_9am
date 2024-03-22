@@ -18,7 +18,6 @@ function Header() {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/add_user">Add User</NavLink>
                         </li>
-                      
                     </ul>
                 </div>
             </nav>
