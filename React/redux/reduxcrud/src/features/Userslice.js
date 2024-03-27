@@ -12,6 +12,17 @@ export const insert=createAsyncThunk('insert',async(formvalue)=>{
   console.log(res);
 });
 
+export const deletedata=createAsyncThunk('deletedata',async(id)=>{
+  const res=await axios.delete(`http://localhost:3000/user/${id}`);
+  console.log(res);
+});
+
+export const updatedata=createAsyncThunk('update',async(id,formvalue)=>{
+  console.log(id);
+  console.log(formvalue);
+  return false;
+})
+
 export const Userslice = createSlice({
   name: 'user',
   initialState: {
